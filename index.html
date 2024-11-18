@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvin Discord Streaming</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Marvin Discord Streaming</h1>
+    
+    <!-- Choose an option -->
+    <div id="chooseOption">
+        <button class="btn" onclick="showJoinOption()">Join a Session</button>
+        <button class="btn" onclick="showCreateOption()">Create a Session</button>
+    </div>
+
+    <!-- Join Session -->
+    <div id="joinSession" class="hidden">
+        <h2>Join a Session</h2>
+        <input id="sessionKey" class="input-field" type="text" placeholder="Enter Session Key" />
+        <button class="btn" onclick="joinSession()">Join</button>
+        <button class="btn" onclick="goBack()">Back</button>
+    </div>
+
+    <!-- Create Session -->
+    <div id="createSession" class="hidden">
+        <h2>Create a Session</h2>
+        <p>Attempting to sign in with Max...</p>
+        <button class="btn" onclick="createSession()">Create Session</button>
+        <button class="btn" onclick="goBack()">Back</button>
+    </div>
+
+    <!-- Session Status -->
+    <div id="sessionStatus" class="hidden">
+        <h2>Status</h2>
+        <p id="statusMessage"></p>
+        <button class="btn" onclick="goBack()">Back</button>
+    </div>
+</div>
+
+<script>
+    // Show 'Join a Session' screen
+    function showJoinOption() {
+        document.getElementById('chooseOption').classList.add('hidden');
+        document.getElementById('joinSession').classList.remove('hidden');
+    }
+
+    // Show 'Create a Session' screen
+    function showCreateOption() {
+        document.getElementById('chooseOption').classList.add('hidden');
+        document.getElementById('createSession').classList.remove('hidden');
+    }
+
+    // Go back to the main options screen
+    function goBack() {
+        document.getElementById('chooseOption').classList.remove('hidden');
+        document.getElementById('joinSession').classList.add('hidden');
+        document.getElementById('createSession').classList.add('hidden');
+        document.getElementById('sessionStatus').classList.add('hidden');
+    }
+
+    // Handle joining a session
+    function joinSession() {
+        const sessionKey = document.getElementById('sessionKey').value;
+        
+        // Placeholder for the backend server logic
+        console.log("Joining session with key:", sessionKey);
+
+        // Simulate backend response
+        setTimeout(() => {
+            document.getElementById('sessionStatus').classList.remove('hidden');
+            document.getElementById('statusMessage').textContent = `Successfully joined session with key: ${sessionKey}`;
+        }, 1000);
+    }
+
+    // Handle creating a session
+    function createSession() {
+        // Simulate Max sign-in logic
+        console.log("Attempting to sign in with Max...");
+
+        // Simulate success or failure
+        setTimeout(() => {
+            const signInSuccess = Math.random() > 0.5;  // Random success or failure
+            document.getElementById('sessionStatus').classList.remove('hidden');
+            if (signInSuccess) {
+                document.getElementById('statusMessage').textContent = "Successfully created session!";
+            } else {
+                document.getElementById('statusMessage').textContent = "Failed to sign in with Max.";
+            }
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
